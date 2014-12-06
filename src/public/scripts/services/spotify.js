@@ -46,6 +46,32 @@ angular.module('bullhorn')
       });
     };
 
+    svc.status = function() {
+      var deferred = $q.defer();
+
+      initialized.promise.then(function() {
+        svc.get('/remote/status.json').then(function(body) {
+          deferred.resolve(JSON.parse(body));
+        });
+      });
+
+      return deferred.promise;
+    };
+
+    svc.open = function() {
+      var deferred = $q.defer();
+
+      initialized.promise.then(function() {
+        svc.get('/remote/open.json').then(function() {
+          // Re-initialize
+          initialized = $q.defer();
+          svc.initialize();
+        });
+      });
+
+      return deferred.promise;
+    };
+
     svc.determineLocalUrl = function() {
       var deferred = $q.defer();
 
@@ -73,6 +99,12 @@ angular.module('bullhorn')
 
       request('http://open.spotify.com/token', function(error, response, body) {
         var obj = JSON.parse(body);
+
+        // TODO: Figure out what's the reason for this...
+        if (obj.t === null) {
+          alert('Token is null');
+        }
+
         deferred.resolve(obj.t);
       });
 
@@ -82,16 +114,7 @@ angular.module('bullhorn')
     svc.getCsrfToken = function() {
       var deferred = $q.defer();
 
-      var path = '/simplecsrf/token.json?ref=&cors=';
-
-      var options = {
-        url: svc.localUrl + path,
-        headers: {
-          'Origin': originHeader
-        }
-      };
-
-      request(options, function(error, response, body) {
+      svc.get('/simplecsrf/token.json').then(function(body) {
         var obj = JSON.parse(body);
         deferred.resolve(obj.token);
       });
@@ -102,16 +125,15 @@ angular.module('bullhorn')
     svc.get = function(path, params) {
       var deferred = $q.defer();
 
-      if (/^\//.test(path)) {
-        path = svc.localUrl + path;
-      }
-
       var parameters = {
-        'oauth': svc.oAuthToken,
-        'csrf': svc.csrfToken,
         'ref': '',
         'cors': ''
       };
+
+      if (svc.oAuthToken && svc.csrfToken) {
+        parameters.oauth = svc.oAuthToken;
+        parameters.csrf = svc.csrfToken;
+      }
 
       if (angular.isDefined(params)) {
         angular.forEach(params, function(value, key) {
@@ -119,15 +141,21 @@ angular.module('bullhorn')
         });
       }
 
+      var url = path;
+
+      if (/^\//.test(url)) {
+        url = svc.localUrl + url + '?' + qs.stringify(parameters);
+      }
+
       var options = {
-        url: path += '?' + qs.stringify(parameters),
+        url: url,
         headers: {
           'Origin': originHeader
         }
       };
 
       request(options, function(error, response, body) {
-        deferred.resolve();
+        deferred.resolve(body);
       });
 
       return deferred.promise;
@@ -153,8 +181,6 @@ angular.module('bullhorn')
 
       return initialized.promise;
     };
-
-    svc.initialize();
 
     return svc;
   });

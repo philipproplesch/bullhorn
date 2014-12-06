@@ -5,7 +5,6 @@ angular.module('bullhorn')
 
     $scope.pause = function() {
       Spotify.pause(paused);
-
       paused = !paused;
     };
 
