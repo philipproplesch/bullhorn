@@ -1,0 +1,13 @@
+{
+  "name": "bullhorn",
+  "version": "0.0.0",
+  "authors": [
+    "Philip Proplesch"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.3.5",
+    "angular-ui-router": "~0.2.13"
+  }
+}
