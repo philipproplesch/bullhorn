@@ -9,6 +9,8 @@ angular.module('bullhorn')
     var startPort = 4370;
     var endPort = 4379;
 
+    var originHeader = 'https://open.spotify.com';
+
     var charset = 'abcdefghijklmnopqrstuvwxyz1234567890';
 
     var generateRandomString = function(length) {
@@ -49,7 +51,14 @@ angular.module('bullhorn')
 
       for (var port = startPort; port <= endPort; port++) {
 
-        request(buildLocalUrl(port) + '/remote/status.json', function(error, response, body) {
+        var options = {
+          url: buildLocalUrl(port) + '/remote/status.json',
+          headers: {
+            'Origin': originHeader
+          }
+        };
+
+        request(options, function(error, response, body) {
           if (response && response.statusCode === 200) {
               deferred.resolve(response.request.port);
           }
@@ -78,7 +87,7 @@ angular.module('bullhorn')
       var options = {
         url: svc.localUrl + path,
         headers: {
-          'Origin': 'https://open.spotify.com'
+          'Origin': originHeader
         }
       };
 
@@ -102,7 +111,7 @@ angular.module('bullhorn')
         'csrf': svc.csrfToken,
         'ref': '',
         'cors': ''
-      }
+      };
 
       if (angular.isDefined(params)) {
         angular.forEach(params, function(value, key) {
@@ -110,11 +119,16 @@ angular.module('bullhorn')
         });
       }
 
-      path += '?' + qs.stringify(parameters);
+      var options = {
+        url: path += '?' + qs.stringify(parameters),
+        headers: {
+          'Origin': originHeader
+        }
+      };
 
-      request(path, function(error, response, body) {
+      request(options, function(error, response, body) {
         deferred.resolve();
-      })
+      });
 
       return deferred.promise;
     };
