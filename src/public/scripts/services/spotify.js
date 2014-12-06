@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var request = require('request');
 var qs = require('querystring');
 
@@ -6,8 +7,7 @@ angular.module('bullhorn')
 
     var initialized = $q.defer();
 
-    var startPort = 4370;
-    var endPort = 4379;
+    var ports = _.range(4370, 4380);
 
     var originHeader = 'https://open.spotify.com';
 
@@ -31,9 +31,12 @@ angular.module('bullhorn')
     var svc = {};
 
     var methods = {
-      'open': '/remote/open.json',
-      'status': '/remote/status.json',
-
+      'open': {
+        url: '/remote/open.json'
+      },
+      'status': {
+        url: '/remote/status.json'
+      },
       'play': {
         url: '/remote/play.json',
         params: ['uri']
@@ -52,18 +55,15 @@ angular.module('bullhorn')
         var args = arguments;
 
         var params = {};
-        var url = config;
 
-        if (angular.isObject(config)) {
-          url = config.url;
-
+        if (angular.isDefined(config.params)) {
           angular.forEach(config.params, function(name, index) {
             params[name] = args[index];
           });
         }
 
         initialized.promise.then(function() {
-          svc.get(url, params).then(function(body) {
+          svc.get(config.url, params).then(function(body) {
             deferred.resolve(JSON.parse(body));
           });
         });
@@ -75,8 +75,7 @@ angular.module('bullhorn')
     svc.determineLocalUrl = function() {
       var deferred = $q.defer();
 
-      for (var port = startPort; port <= endPort; port++) {
-
+      ports.forEach(function(port) {
         var options = {
           url: buildLocalUrl(port) + '/remote/status.json',
           headers: {
@@ -86,10 +85,10 @@ angular.module('bullhorn')
 
         request(options, function(error, response, body) {
           if (response && response.statusCode === 200) {
-              deferred.resolve(response.request.port);
+            deferred.resolve(response.request.port);
           }
         });
-      }
+      });
 
       return deferred.promise;
     };
