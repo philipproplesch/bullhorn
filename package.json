@@ -22,8 +22,5 @@
     "gulp-shell": "^0.2.11",
     "gulp-sourcemaps": "^1.2.8",
     "node-webkit-builder": "^0.3.2"
-  },
-  "dependencies": {
-    "request": "^2.49.0"
   }
 }
