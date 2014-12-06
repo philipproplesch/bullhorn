@@ -30,47 +30,47 @@ angular.module('bullhorn')
     // Service
     var svc = {};
 
-    svc.play = function(id) {
-      initialized.promise.then(function() {
-        svc.get('/remote/play.json', {
-          'uri': id
-        });
-      });
+    var methods = {
+      'open': '/remote/open.json',
+      'status': '/remote/status.json',
+
+      'play': {
+        url: '/remote/play.json',
+        params: ['uri']
+      },
+      'pause': {
+        url: '/remote/pause.json',
+        params: ['pause']
+      }
     };
 
-    svc.pause = function(pause) {
-      initialized.promise.then(function() {
-        svc.get('/remote/pause.json', {
-          'pause': angular.isDefined(pause) ? pause : true
+    angular.forEach(methods, function(config, method) {
+      svc[method] = function() {
+        var deferred = $q.defer();
+
+        // Store ´arguments´ from this function call
+        var args = arguments;
+
+        var params = {};
+        var url = config;
+
+        if (angular.isObject(config)) {
+          url = config.url;
+
+          angular.forEach(config.params, function(name, index) {
+            params[name] = args[index];
+          });
+        }
+
+        initialized.promise.then(function() {
+          svc.get(url, params).then(function(body) {
+            deferred.resolve(JSON.parse(body));
+          });
         });
-      });
-    };
 
-    svc.status = function() {
-      var deferred = $q.defer();
-
-      initialized.promise.then(function() {
-        svc.get('/remote/status.json').then(function(body) {
-          deferred.resolve(JSON.parse(body));
-        });
-      });
-
-      return deferred.promise;
-    };
-
-    svc.open = function() {
-      var deferred = $q.defer();
-
-      initialized.promise.then(function() {
-        svc.get('/remote/open.json').then(function() {
-          // Re-initialize
-          initialized = $q.defer();
-          svc.initialize();
-        });
-      });
-
-      return deferred.promise;
-    };
+        return deferred.promise;
+      };
+    });
 
     svc.determineLocalUrl = function() {
       var deferred = $q.defer();
