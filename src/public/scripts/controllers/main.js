@@ -16,6 +16,6 @@ angular.module('bullhorn')
         Spotify.status().then(function(response) {
           $scope.status = response;
         });
-      }, 5000);
+      }, 1000);
     });
   });

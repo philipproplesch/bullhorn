@@ -72,8 +72,6 @@ angular.module('bullhorn')
 
           if (angular.isUndefined(value)) {
             params[name] = args[index];
-          }
-          else {
             index++;
           }
         }
@@ -115,9 +113,9 @@ angular.module('bullhorn')
       request('http://open.spotify.com/token', function(error, response, body) {
         var obj = JSON.parse(body);
 
-        // TODO: Figure out what's the reason for this...
+        // TODO: Figure out what's the reason for this
         if (obj.t === null) {
-          alert('Token is null');
+          deferred.reject();
         }
 
         deferred.resolve(obj.t);
@@ -191,6 +189,9 @@ angular.module('bullhorn')
           svc.csrfToken = data[1];
 
           initialized.resolve();
+        }, function() {
+          // Try again until there is an OAuth token
+          svc.initialize();
         });
       });
 
