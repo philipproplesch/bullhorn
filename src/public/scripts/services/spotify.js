@@ -3,25 +3,13 @@ var request = require('request');
 var qs = require('querystring');
 
 angular.module('bullhorn')
-  .service('Spotify', function($q) {
+  .service('Spotify', function($q, Utils) {
 
     var initialized = $q.defer();
 
     var ports = _.range(4370, 4380);
 
     var originHeader = 'https://open.spotify.com';
-
-    var charset = 'abcdefghijklmnopqrstuvwxyz1234567890';
-
-    var generateRandomString = function(length) {
-      var result = '';
-
-      for (var i = length; i > 0; --i) {
-        result += charset[Math.round(Math.random() * (charset.length - 1))];
-      }
-
-      return result;
-    };
 
     var buildLocalUrl = function(port) {
       return 'https://' + svc.subDomain + '.spotilocal.com:' + port;
@@ -57,6 +45,7 @@ angular.module('bullhorn')
       }
     };
 
+    // Register all methods defined above
     angular.forEach(methods, function(config, method) {
       svc[method] = function() {
         var deferred = $q.defer();
@@ -85,6 +74,45 @@ angular.module('bullhorn')
         return deferred.promise;
       };
     });
+
+    svc.get = function(path, params) {
+      var deferred = $q.defer();
+
+      var parameters = {
+        'ref': '',
+        'cors': ''
+      };
+
+      if (svc.oAuthToken && svc.csrfToken) {
+        parameters.oauth = svc.oAuthToken;
+        parameters.csrf = svc.csrfToken;
+      }
+
+      if (angular.isDefined(params)) {
+        angular.forEach(params, function(value, key) {
+          parameters[key] = value;
+        });
+      }
+
+      var url = path;
+
+      if (/^\//.test(url)) {
+        url = svc.localUrl + url + '?' + qs.stringify(parameters);
+      }
+
+      var options = {
+        url: url,
+        headers: {
+          'Origin': originHeader
+        }
+      };
+
+      request(options, function(error, response, body) {
+        deferred.resolve(body);
+      });
+
+      return deferred.promise;
+    };
 
     svc.determineLocalUrl = function() {
       var deferred = $q.defer();
@@ -135,47 +163,8 @@ angular.module('bullhorn')
       return deferred.promise;
     };
 
-    svc.get = function(path, params) {
-      var deferred = $q.defer();
-
-      var parameters = {
-        'ref': '',
-        'cors': ''
-      };
-
-      if (svc.oAuthToken && svc.csrfToken) {
-        parameters.oauth = svc.oAuthToken;
-        parameters.csrf = svc.csrfToken;
-      }
-
-      if (angular.isDefined(params)) {
-        angular.forEach(params, function(value, key) {
-          parameters[key] = value;
-        });
-      }
-
-      var url = path;
-
-      if (/^\//.test(url)) {
-        url = svc.localUrl + url + '?' + qs.stringify(parameters);
-      }
-
-      var options = {
-        url: url,
-        headers: {
-          'Origin': originHeader
-        }
-      };
-
-      request(options, function(error, response, body) {
-        deferred.resolve(body);
-      });
-
-      return deferred.promise;
-    };
-
     svc.initialize = function() {
-      svc.subDomain = generateRandomString(5);
+      svc.subDomain = Utils.generateRandomString(5);
 
       svc.determineLocalUrl().then(function(port) {
         svc.localUrl = buildLocalUrl(port);
