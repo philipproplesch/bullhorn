@@ -37,13 +37,23 @@ angular.module('bullhorn')
       'status': {
         url: '/remote/status.json'
       },
+      'version': {
+        url: '/service/version.json',
+        params: {
+          service: 'remote'
+        }
+      },
       'play': {
         url: '/remote/play.json',
-        params: ['uri']
+        params: {
+          uri: undefined
+        }
       },
       'pause': {
         url: '/remote/pause.json',
-        params: ['pause']
+        params: {
+          pause: undefined
+        }
       }
     };
 
@@ -54,12 +64,18 @@ angular.module('bullhorn')
         // Store ´arguments´ from this function call
         var args = arguments;
 
-        var params = {};
+        var params = angular.copy(config.params) || {};
 
-        if (angular.isDefined(config.params)) {
-          angular.forEach(config.params, function(name, index) {
+        var index = 0;
+        for (var name in params) {
+          var value = params[name];
+
+          if (angular.isUndefined(value)) {
             params[name] = args[index];
-          });
+          }
+          else {
+            index++;
+          }
         }
 
         initialized.promise.then(function() {

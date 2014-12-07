@@ -1,14 +1,14 @@
 angular.module('bullhorn')
   .controller('HomeCtrl', function($scope, Spotify) {
 
-    var paused = false;
+    $scope.track = 'spotify:track:6NHBIrecf20EkEGg0Hzuqi';
 
     $scope.pause = function() {
-      Spotify.pause(paused);
-      paused = !paused;
+      var playing = $scope.status.playing;
+      Spotify.pause(playing);
     };
 
     $scope.play = function() {
-      Spotify.play('spotify:track:7aATFcH1ZVz8bMdosllVSv');
+      Spotify.play($scope.track);
     };
   });
