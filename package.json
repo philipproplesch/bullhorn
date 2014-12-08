@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/philipproplesch/bullhorn",
   "devDependencies": {
+    "del": "^1.1.0",
     "gulp": "^3.8.10",
     "gulp-load-plugins": "^0.7.1",
     "gulp-sass": "^1.2.4",

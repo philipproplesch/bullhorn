@@ -17,12 +17,12 @@ gulp.task('run', executeNodeCommand(
   'node_modules/node-webkit-builder/bin/nwbuild --run ./src'
 ));
 
-gulp.task('build-win', executeNodeCommand(
-  'node_modules/node-webkit-builder/bin/nwbuild -p win ./src'
-));
+gulp.task('clean', function(callback) {
+  require('del')(['build'], callback);
+});
 
-gulp.task('build-osx', executeNodeCommand(
-  'node_modules/node-webkit-builder/bin/nwbuild -p osx ./src'
+gulp.task('build', ['clean'], executeNodeCommand(
+  'node_modules/node-webkit-builder/bin/nwbuild ./src'
 ));
 
 function executeNodeCommand(cmd) {
