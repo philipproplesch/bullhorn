@@ -57,11 +57,13 @@ angular.module('bullhorn')
 
         var index = 0;
         for (var name in params) {
-          var value = params[name];
+          if (params.hasOwnProperty(name)) {
+            var value = params[name];
 
-          if (angular.isUndefined(value)) {
-            params[name] = args[index];
-            index++;
+            if (angular.isUndefined(value)) {
+              params[name] = args[index];
+              index++;
+            }
           }
         }
 
@@ -125,7 +127,7 @@ angular.module('bullhorn')
           }
         };
 
-        request(options, function(error, response, body) {
+        request(options, function(error, response) {
           if (response && response.statusCode === 200) {
             deferred.resolve(response.request.port);
           }
