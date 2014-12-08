@@ -4,7 +4,7 @@ angular.module('bullhorn', ['ui.router'])
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'public/templates/home.html',
+        templateUrl: 'templates/home.html',
         controller: 'HomeCtrl'
       });
 

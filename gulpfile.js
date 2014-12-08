@@ -1,34 +1,36 @@
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 
-var os = require('os');
-
 gulp.task('sass', function () {
-  gulp.src('./src/public/styles/**/*.scss')
+  gulp.src('./src/styles/**/*.scss')
   .pipe(plugins.sourcemaps.init())
   .pipe(plugins.sass())
   .pipe(plugins.sourcemaps.write())
-  .pipe(gulp.dest('./src/public/styles'));
+  .pipe(gulp.dest('./src/styles'));
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./src/public/styles/**/*.scss', ['sass']);
+  gulp.watch('./src/styles/**/*.scss', ['sass']);
 });
 
-gulp.task('run', plugins.shell.task(
-  os.platform() === 'win32' ?
-    'node node_modules/node-webkit-builder/bin/nwbuild --run ./src' :
-    'node_modules/node-webkit-builder/bin/nwbuild --run ./src'
+gulp.task('run', executeNodeCommand(
+  'node_modules/node-webkit-builder/bin/nwbuild --run ./src'
 ));
 
-gulp.task('build-win', plugins.shell.task(
-  os.platform() === 'win32' ?
-    'node node_modules/node-webkit-builder/bin/nwbuild -p win ./src' :
-    'node_modules/node-webkit-builder/bin/nwbuild -p win ./src'
+gulp.task('build-win', executeNodeCommand(
+  'node_modules/node-webkit-builder/bin/nwbuild -p win ./src'
 ));
 
-gulp.task('build-osx', plugins.shell.task(
-  os.platform() === 'win32' ?
-    'node node_modules/node-webkit-builder/bin/nwbuild -p osx ./src' :
-    'node_modules/node-webkit-builder/bin/nwbuild -p osx ./src'
+gulp.task('build-osx', executeNodeCommand(
+  'node_modules/node-webkit-builder/bin/nwbuild -p osx ./src'
 ));
+
+function executeNodeCommand(cmd) {
+  var platform = require('os').platform();
+
+  if (platform === 'win32') {
+    cmd = 'node ' + cmd;
+  }
+
+  return plugins.shell.task(cmd);
+}
