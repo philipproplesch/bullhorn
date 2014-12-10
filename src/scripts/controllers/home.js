@@ -1,12 +1,14 @@
 angular.module('bullhorn')
-  .controller('HomeCtrl', function($scope, Spotify) {
+  .controller('HomeCtrl', function($scope, $state, Socket) {
 
-    $scope.pause = function() {
-      var playing = $scope.status.playing;
-      Spotify.pause(playing);
+    $scope.host = function() {
+      Socket.host();
+      $state.go('control');
     };
 
-    $scope.play = function() {
-      Spotify.play($scope.track);
+    $scope.connect = function() {
+      Socket.connect($scope.endpoint).then(function() {
+        $state.go('listen');
+      });
     };
   });

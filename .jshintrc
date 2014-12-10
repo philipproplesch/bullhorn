@@ -31,6 +31,7 @@
 
     "globals": {
       "angular": false,
+      "io": false,
 
       "describe": false,
       "it": false,

@@ -8,7 +8,10 @@ angular.module('bullhorn')
         $scope.status = response;
 
         if (!response.running) {
-          Spotify.open();
+          Spotify.open().then(function() {
+            // Initialize again
+            Spotify.initialize();
+          });
         }
       });
 

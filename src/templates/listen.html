@@ -1,0 +1,10 @@
+<input type="text" ng-model="track = status.track.track_resource.uri">
+<br>
+
+<button ng-click="play()">Change track</button>
+<button ng-click="pause()">Pause</button>
+
+<h1 ng-bind="status.track.track_resource.name"></h1>
+<h2 ng-bind="status.track.artist_resource.name"></h2>
+
+<!-- https://api.spotify.com/v1/search?type=track&q= -->

@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^2.4.1",
-    "request": "^2.49.0"
+    "request": "^2.49.0",
+    "socket.io": "^1.2.1"
   }
 }
