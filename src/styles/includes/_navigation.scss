@@ -1,0 +1,10 @@
+#app-header {
+  @extend clearfix;
+  background-color: rgba($bg-color, 0.5);
+  color: $font-color;
+
+  h1 {
+    margin: 0;
+    padding: 10px;
+  }
+}

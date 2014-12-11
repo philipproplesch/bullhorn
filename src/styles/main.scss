@@ -1,6 +1,13 @@
-@import "variables";
+@import "includes/variables";
+@import "includes/mixins";
+
+@import "../bower_components/font-awesome/scss/font-awesome";
+
+@import "includes/navigation";
 
 html {
-  //background: url(../images/bg.jpg) no-repeat center center fixed;
-  //background-size: cover;
+  background: url(../images/bg.jpg) no-repeat center center fixed;
+  background-size: cover;
+  font-family: sans-serif;
+  font-weight: lighter;
 }

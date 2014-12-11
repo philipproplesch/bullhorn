@@ -30,7 +30,7 @@
     "karma-mocha": "^0.1.10",
     "karma-phantomjs-launcher": "^0.1.4",
     "mocha": "^2.0.1",
-    "node-webkit-builder": "^0.3.2",
+    "node-webkit-builder": "^0.4.0",
     "run-sequence": "^1.0.2"
   }
 }

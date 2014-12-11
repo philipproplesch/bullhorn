@@ -8,9 +8,7 @@
   <link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 <body ng-controller="MainCtrl">
-  <header>
-    <h1>bullhorn</h1>
-  </header>
+  <navigation></navigation>
 
   <div ui-view></div>
 
@@ -21,6 +19,7 @@
   <script src="scripts/controllers/home.js"></script>
   <script src="scripts/controllers/control.js"></script>
   <script src="scripts/controllers/listen.js"></script>
+  <script src="scripts/directives/navigation.js"></script>
   <script src="scripts/services/utils.js"></script>
   <script src="scripts/services/socket.js"></script>
   <script src="scripts/services/server.js"></script>
