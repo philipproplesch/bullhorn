@@ -13,7 +13,7 @@
 
 - `cd` into the root directory and execute `npm install` & `gulp build`
 - `gulp` starts a local watcher and observes changes you make to Sass and JavaScript files
-- `gulp run` starts [node-webkit](https://github.com/rogerwang/node-webkit) and allows you to 
+- `gulp run` starts [node-webkit](https://github.com/rogerwang/node-webkit) and allows you to test the application
 
 
 ### Deployment
