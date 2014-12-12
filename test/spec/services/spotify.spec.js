@@ -43,12 +43,12 @@ describe('Spotify', function() {
     });
 
     it('should resolve the promise if the status code equals 200', function() {
-      var data;
-      Spotify.determineLocalUrl().then(function(response) {
-        data = response;
+      var port;
+      Spotify.determineLocalUrl().then(function(data) {
+        port = data;
       });
 
-      expect(data).to.be.undefined();
+      expect(port).to.be.undefined();
 
       deferred.resolve({
         response: {
@@ -61,7 +61,14 @@ describe('Spotify', function() {
 
       rootScope.$apply();
 
-      expect(data).to.not.be.undefined();
+      expect(port).to.not.be.undefined();
+      expect(port).to.equals(4711);
+    });
+  });
+
+  describe('#getOAuthToken()', function() {
+    it('...', function() {
+      Spotify.getOAuthToken();
     });
   });
 });
