@@ -64,6 +64,7 @@ gulp.task('build-node-webkit-package', ['clean'], executeNodeCommand(
 
 gulp.task('watch', function() {
   gulp.watch('./src/scripts/**/*.js', ['lint']);
+  gulp.watch('./test/spec/**/*.js', ['lint', 'test']);
   gulp.watch('./src/styles/**/*.scss', ['sass']);
 });
 

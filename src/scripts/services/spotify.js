@@ -1,7 +1,3 @@
-var _ = require('lodash');
-var request = require('request');
-var qs = require('querystring');
-
 angular.module('bullhorn')
   .service('Spotify', function($q, Utils) {
 
@@ -99,7 +95,7 @@ angular.module('bullhorn')
       var url = path;
 
       if (/^\//.test(url)) {
-        url = svc.localUrl + url + '?' + qs.stringify(parameters);
+        url = svc.localUrl + url + '?' + Utils.querystring(parameters);
       }
 
       var options = {
@@ -109,7 +105,7 @@ angular.module('bullhorn')
         }
       };
 
-      request(options, function(error, response, body) {
+      nodeHelper.web.executeRequest(options,  function(error, response, body) {
         deferred.resolve(body);
       });
 
@@ -127,7 +123,7 @@ angular.module('bullhorn')
           }
         };
 
-        request(options, function(error, response) {
+        nodeHelper.web.executeRequest(options,  function(error, response) {
           if (response && response.statusCode === 200) {
             deferred.resolve(response.request.port);
           }
@@ -140,7 +136,11 @@ angular.module('bullhorn')
     svc.getOAuthToken = function() {
       var deferred = $q.defer();
 
-      request('http://open.spotify.com/token', function(error, response, body) {
+      var options = {
+        url: 'http://open.spotify.com/token'
+      };
+
+      nodeHelper.web.executeRequest(options,  function(error, response, body) {
         var obj = JSON.parse(body);
 
         // TODO: Figure out what's the reason for this

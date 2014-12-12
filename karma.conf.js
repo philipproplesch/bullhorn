@@ -14,12 +14,17 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'src/bower_components/angular/angular.js',
+      'src/bower_components/angular-mocks/angular-mocks.js',
+      'src/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'src/scripts/**/*.js',
       'test/**/*.js'
     ],
 
 
     // list of files to exclude
     exclude: [
+      'src/scripts/node/**/*.*'
     ],
 
 
