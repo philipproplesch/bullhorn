@@ -4,10 +4,14 @@
 @import "../bower_components/font-awesome/scss/font-awesome";
 
 @import "includes/navigation";
+@import "includes/components";
 
-html {
-  background: url(../images/bg.jpg) no-repeat center center fixed;
-  background-size: cover;
-  font-family: sans-serif;
-  font-weight: lighter;
+*{
+	&:focus{
+		outline: none;
+	}
+}
+
+body{
+	background: $bg-color;
 }

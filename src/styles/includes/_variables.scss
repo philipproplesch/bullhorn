@@ -1,6 +1,15 @@
 // Font Awesome
 $fa-font-path: "../bower_components/font-awesome/fonts";
 
-// bullhorn
-$bg-color: #333333;
-$font-color: #DCD5DB;
+// colors
+$color-white: #fff;
+$bg-color: #121314;
+$content-color: #222326;
+$font-color: $color-white;
+$color-green: #84BD00;
+$color-lighter-green: darken($color-green, 10%);
+$header-color: #1C2028;
+$standard-gray: #DFE0E6;
+
+
+$border-radius: 4px;

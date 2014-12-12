@@ -1,0 +1,31 @@
+.btn{
+	border-radius: $border-radius;
+	font-size: 14px;
+	line-height: 1.5;
+	border-radius: 500px;
+	padding: 6px 20px 3px;
+	border: none;
+	color: white;
+	background: $color-green;
+
+	&:hover{
+		background: $color-lighter-green;
+		transition: background 0.2s ease-in-out;
+		cursor: pointer;
+	}
+}
+
+
+input{
+	border-radius: $border-radius + 10;
+	border: none;
+	background: $standard-gray;
+	padding: 7px 20px 6px 20px;
+	&:active{
+		background: $color-white;
+	}
+	&:focus{
+		background: $color-white;
+
+	}
+}
