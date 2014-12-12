@@ -35,6 +35,8 @@
       "io": false,
       "_": false,
 
+      "sinon": false,
+
       "describe": false,
       "it": false,
       "before": false,

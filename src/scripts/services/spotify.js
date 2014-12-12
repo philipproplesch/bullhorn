@@ -7,10 +7,6 @@ angular.module('bullhorn')
 
     var originHeader = 'https://open.spotify.com';
 
-    var buildLocalUrl = function(port) {
-      return 'https://' + svc.subDomain + '.spotilocal.com:' + port;
-    };
-
     // Service
     var svc = {};
 
@@ -105,27 +101,30 @@ angular.module('bullhorn')
         }
       };
 
-      nodeHelper.web.executeRequest(options,  function(error, response, body) {
-        deferred.resolve(body);
+      nodeHelper.web.executeRequest(options, function(error, response, body) {
+        deferred.resolve({
+          error: error,
+          response: response,
+          body: body
+        });
       });
 
       return deferred.promise;
+    };
+
+    svc.buildLocalUrl = function(port) {
+      return 'https://' + svc.subDomain + '.spotilocal.com:' + port;
     };
 
     svc.determineLocalUrl = function() {
       var deferred = $q.defer();
 
       ports.forEach(function(port) {
-        var options = {
-          url: buildLocalUrl(port) + '/remote/status.json',
-          headers: {
-            'Origin': originHeader
-          }
-        };
+        var url = svc.buildLocalUrl(port) + '/remote/status.json';
 
-        nodeHelper.web.executeRequest(options,  function(error, response) {
-          if (response && response.statusCode === 200) {
-            deferred.resolve(response.request.port);
+        svc.get(url).then(function(data) {
+          if (data.response && data.response.statusCode === 200) {
+            deferred.resolve(data.response.request.port);
           }
         });
       });
@@ -169,7 +168,7 @@ angular.module('bullhorn')
       svc.subDomain = Utils.generateRandomString(5);
 
       svc.determineLocalUrl().then(function(port) {
-        svc.localUrl = buildLocalUrl(port);
+        svc.localUrl = svc.buildLocalUrl(port);
 
         $q.all([
           svc.getOAuthToken(),

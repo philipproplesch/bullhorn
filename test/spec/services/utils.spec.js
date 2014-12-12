@@ -8,6 +8,8 @@ describe('Utils', function() {
 
   describe('#generateRandomString()', function() {
     it('should return a string with the expected length', function() {
+      expect(Utils.generateRandomString(0).length).to.equal(0);
+      expect(Utils.generateRandomString(1).length).to.equal(1);
       expect(Utils.generateRandomString(5).length).to.equal(5);
       expect(Utils.generateRandomString(10).length).to.equal(10);
     });
@@ -24,6 +26,11 @@ describe('Utils', function() {
       var qs = Utils.querystring(obj);
 
       expect(qs).to.equal('first=foo&second=bar&third=false');
+    });
+
+    it('should return an empty string if the passed object is undefined', function() {
+      var qs = Utils.querystring(undefined);
+      expect(qs).to.equal('');
     });
   });
 });
