@@ -5,6 +5,7 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 $color-white: #fff;
 $bg-color: #121314;
 $content-color: #222326;
+$content-color-lighter: lighten($content-color, 5%);
 $font-color: $color-white;
 $color-green: #84BD00;
 $color-lighter-green: darken($color-green, 10%);
