@@ -30,8 +30,12 @@
     "node": true,
 
     "globals": {
+      "nodeHelper": false,
       "angular": false,
       "io": false,
+      "_": false,
+
+      "sinon": false,
 
       "describe": false,
       "it": false,
@@ -39,6 +43,8 @@
       "beforeEach": false,
       "after": false,
       "afterEach": false,
-      "expect": false
+      "expect": false,
+
+      "inject": false
     }
 }

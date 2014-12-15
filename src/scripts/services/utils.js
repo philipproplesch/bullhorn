@@ -12,6 +12,18 @@ angular.module('bullhorn')
         }
 
         return result;
+      },
+
+      querystring: function(obj) {
+        var qs = [];
+
+        for(var property in obj) {
+          if (obj.hasOwnProperty(property)) {
+            qs.push(encodeURIComponent(property) + '=' + encodeURIComponent(obj[property]));
+          }
+        }
+
+        return qs.join("&");
       }
     };
   });
