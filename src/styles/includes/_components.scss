@@ -1,3 +1,4 @@
+//buttons
 .btn{
 	border-radius: $border-radius;
 	font-size: 14px;
@@ -5,17 +6,50 @@
 	border-radius: 500px;
 	padding: 6px 20px 3px;
 	border: none;
-	color: white;
-	background: $color-green;
+	color: black;
+	background: $color-white;
 
 	&:hover{
-		background: $color-lighter-green;
+		background: rgba($color-white, 0.5);
 		transition: background 0.2s ease-in-out;
 		cursor: pointer;
 	}
 }
 
+.green{
+	background: $color-green;
+	color: white;
+	&:hover{
+		background: $color-darker-green;
+	}
+}
 
+.red{
+	background: $color-red;
+	color: white;
+	&:hover{
+		background: $color-darker-red;
+	}
+}
+
+.blue{
+	background: $color-blue;
+	color: white;
+	&:hover{
+		background: $color-darker-blue;
+	}
+}
+
+
+//general classes
+.pull-right{
+	float: right !important;
+}
+.pull-left{
+	float: left !important;
+}
+
+//input styles
 input{
 	border-radius: $border-radius + 10;
 	border: none;
@@ -30,15 +64,15 @@ input{
 	}
 }
 
+// UL Style
 .bh-list{
 	padding: 0;
 	list-style: none;
 	color: rgba($color-white, 0.5);
 	background: $content-color;
 	li{
-		padding: 5px 10px 5px 10px;
+		padding: 7px 7px 7px 10px;
 		span{
-			vertical-align: super;
 			padding-left: 10px;
 		}
 		&:hover{
@@ -55,21 +89,13 @@ input{
 			border-left: 5px solid $color-green;
 			padding-left: 5px;
 			background: $content-color-lighter;
+			color: white;
+		}
+		i{
+			color: $color-white;
 		}
 		&.play{
-			position: relative;
-			&:after{
-				content: "icon";
-				vertical-align: super;
-				position: absolute;
-				top: 8px;
-				right: 10px;
-			}		
-		}
-		&:before{
-			content: url(../images/music-icon.png);
-			width: 25px;
-			height: auto;
+			position: relative;	
 		}
 	}
 }
