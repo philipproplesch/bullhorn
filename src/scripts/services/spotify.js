@@ -60,8 +60,8 @@ angular.module('bullhorn')
         }
 
         initialized.promise.then(function() {
-          svc.get(config.url, params).then(function(body) {
-            deferred.resolve(JSON.parse(body));
+          svc.get(config.url, params).then(function(data) {
+            deferred.resolve(JSON.parse(data.body));
           });
         });
 
@@ -156,8 +156,8 @@ angular.module('bullhorn')
     svc.getCsrfToken = function() {
       var deferred = $q.defer();
 
-      svc.get('/simplecsrf/token.json').then(function(response) {
-        var obj = JSON.parse(response.body);
+      svc.get('/simplecsrf/token.json').then(function(data) {
+        var obj = JSON.parse(data.body);
         deferred.resolve(obj.token);
       });
 
