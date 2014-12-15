@@ -2,12 +2,19 @@
 @import "includes/mixins";
 
 @import "../bower_components/font-awesome/scss/font-awesome";
+// @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/grid";
 
 @import "includes/navigation";
+@import "includes/components";
 
-html {
-  background: url(../images/bg.jpg) no-repeat center center fixed;
-  background-size: cover;
-  font-family: sans-serif;
-  font-weight: lighter;
+*{
+	-webkit-font-smoothing: antialiased;
+	&:focus{
+		outline: none;
+	}
+}
+
+body{
+	background: $bg-color;
+	margin: 0;
 }
