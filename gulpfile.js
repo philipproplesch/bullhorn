@@ -15,7 +15,7 @@ function executeNodeCommand(cmd) {
 
 gulp.task('lint', function() {
   return gulp.src([
-    './src/scripts/**/*.js',
+    './src/app/scripts/**/*.js',
     './test/**/*.js',
     './gulpfile.js'
     ])
@@ -24,11 +24,11 @@ gulp.task('lint', function() {
 });
 
 gulp.task('sass', function () {
-  gulp.src('./src/styles/**/*.scss')
+  gulp.src('./src/app/styles/**/*.scss')
   .pipe(plugins.sourcemaps.init())
   .pipe(plugins.sass())
   .pipe(plugins.sourcemaps.write())
-  .pipe(gulp.dest('./src/styles'));
+  .pipe(gulp.dest('./src/app/styles'));
 });
 
 gulp.task('test', function (done) {
@@ -63,9 +63,9 @@ gulp.task('build-node-webkit-package', ['clean'], executeNodeCommand(
 ));
 
 gulp.task('watch', function() {
-  gulp.watch('./src/scripts/**/*.js', ['lint']);
+  gulp.watch('./src/app/scripts/**/*.js', ['lint']);
   gulp.watch('./test/spec/**/*.js', ['lint', 'test']);
-  gulp.watch('./src/styles/**/*.scss', ['sass']);
+  gulp.watch('./src/app/styles/**/*.scss', ['sass']);
 });
 
 gulp.task('build', function(callback) {

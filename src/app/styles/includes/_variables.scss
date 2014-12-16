@@ -1,0 +1,19 @@
+// Font Awesome
+$fa-font-path: "../bower_components/font-awesome/fonts";
+
+// colors
+$color-white: #fff;
+$bg-color: #121314;
+$content-color: #222326;
+$content-color-lighter: lighten($content-color, 5%);
+$font-color: $color-white;
+$color-green: #84BD00;
+$color-darker-green: darken($color-green, 10%);
+$color-blue: #007690;
+$color-darker-blue: darken($color-blue, 10%);
+$color-red: #C75050;
+$color-darker-red: darken($color-red, 10%);
+$header-color: #1C2028;
+$standard-gray: #DFE0E6;
+
+$border-radius: 4px;
