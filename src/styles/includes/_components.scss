@@ -71,9 +71,12 @@ input{
 	color: rgba($color-white, 0.5);
 	background: $content-color;
 	li{
+		overflow: hidden;
 		padding: 7px 7px 7px 10px;
+		position: relative;
 		span{
 			padding-left: 10px;
+			white-space: nowrap;
 		}
 		&:hover{
 			background: $content-color-lighter;
@@ -85,6 +88,8 @@ input{
 
 .music{
 	li{
+		border-top: 1px solid $content-color-lighter;
+		border-bottom: 1px solid $content-color-lighter;
 		&.active{
 			border-left: 5px solid $color-green;
 			padding-left: 5px;
@@ -96,6 +101,62 @@ input{
 		}
 		&.play{
 			position: relative;	
+			.fa-play{
+				position: absolute;
+				right: -7px;
+				top: 8px;
+				padding: 0 20px;
+				background: $content-color-lighter;
+			}
 		}
 	}
 }
+
+.cover{
+	li{
+		img{
+			position: relative;
+			bottom: 26px;
+		}
+		ul{
+			padding: 0 15px;
+			display: inline-block;
+			li{
+				.up{
+					color: $color-green;
+				}
+				.down{
+					color: $color-red;
+				}
+				.counter{
+					color: $color-white;
+					font-weight: bold;
+				}
+				i{
+					font-size: 50px;
+				}
+			}
+		}
+		.title{
+			position: absolute;
+			top: 0;
+			left: 260px;
+			padding: 80px 0 80px;
+		}
+	}
+}
+
+@media (max-width: 640px) { 
+	.cover{
+		li{
+			ul{
+				li{
+					display: inline;
+				}
+			}
+		}
+	}
+}
+
+
+
