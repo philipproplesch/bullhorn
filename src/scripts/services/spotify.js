@@ -156,8 +156,8 @@ angular.module('bullhorn')
     svc.getCsrfToken = function() {
       var deferred = $q.defer();
 
-      svc.get('/simplecsrf/token.json').then(function(body) {
-        var obj = JSON.parse(body);
+      svc.get('/simplecsrf/token.json').then(function(response) {
+        var obj = JSON.parse(response.body);
         deferred.resolve(obj.token);
       });
 
