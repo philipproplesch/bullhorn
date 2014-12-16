@@ -3,7 +3,7 @@ angular.module('bullhorn')
 
     return {
       restrict: 'E',
-      templateUrl: 'templates/navigation.html',
+      templateUrl: 'app/templates/navigation.html',
       link: function() {
         //
       }

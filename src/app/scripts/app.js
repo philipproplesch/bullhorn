@@ -4,17 +4,17 @@ angular.module('bullhorn', ['ui.router'])
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'templates/home.html',
+        templateUrl: 'app/templates/home.html',
         controller: 'HomeCtrl'
       })
       .state('control', {
         url: '/control',
-        templateUrl: 'templates/control.html',
+        templateUrl: 'app/templates/control.html',
         controller: 'ControlCtrl'
       })
       .state('listen', {
         url: '/listen',
-        templateUrl: 'templates/listen.html',
+        templateUrl: 'app/templates/listen.html',
         controller: 'ListenCtrl'
       })
     ;
