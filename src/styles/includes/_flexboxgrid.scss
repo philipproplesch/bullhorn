@@ -6,8 +6,7 @@
 	box-sizing: border-box;
 	min-height: 1rem;
 	margin-bottom: 0;
-	background: #007FFF;
-	border: 1px solid #FFF;
+
 	//Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
 	border-radius: 2px;
 	overflow: hidden;
@@ -72,8 +71,6 @@
 }
 .box-first {
 	@extend %extend_3;
-	background: #06C;
-	border-color: #007FFF;
 }
 .box-large {
 	@extend %extend_3;
@@ -81,8 +78,6 @@
 }
 .box-nested {
 	@extend %extend_3;
-	background: $color_midnight_blue_approx;
-	border-color: #007FFF;
 }
 .box-row {
 	@extend %extend_3;

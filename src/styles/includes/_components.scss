@@ -113,35 +113,35 @@ input{
 }
 
 .cover{
-	li{
-		img{
-			position: relative;
-			bottom: 26px;
-		}
-		ul{
-			padding: 0 15px;
-			display: inline-block;
-			li{
-				.up{
-					color: $color-green;
-				}
-				.down{
-					color: $color-red;
-				}
-				.counter{
-					color: $color-white;
-					font-weight: bold;
-				}
-				i{
-					font-size: 50px;
-				}
+	.col-xs{
+		flex-grow: 0;
+		flex-basis: inherit;
+	}
+	&:hover{
+		background: $content-color-lighter;
+		cursor: pointer;
+	}
+	ul{
+		padding: 0;
+		display: inline-block;
+		li{
+			span{
+				padding: 0;
 			}
-		}
-		.title{
-			position: absolute;
-			top: 0;
-			left: 260px;
-			padding: 80px 0 80px;
+			padding: 0;
+			.up{
+				color: $color-green;
+			}
+			.down{
+				color: $color-red;
+			}
+			.counter{
+				color: $color-white;
+				font-weight: bold;
+			}
+			i{
+				font-size: 50px;
+			}
 		}
 	}
 }
