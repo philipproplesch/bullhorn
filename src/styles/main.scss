@@ -4,10 +4,13 @@
 @import "../bower_components/font-awesome/scss/font-awesome";
 // @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/grid";
 
+@import "includes/flexboxgrid";
 @import "includes/navigation";
 @import "includes/components";
 
 *{
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-weight: 300;
 	-webkit-font-smoothing: antialiased;
 	&:focus{
 		outline: none;
