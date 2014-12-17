@@ -51,7 +51,7 @@ gulp.task('restore-bower-dependencies', plugins.shell.task(
 ));
 
 gulp.task('clean', function(callback) {
-  require('del')(['build'], callback);
+  require('del')(['build', 'coverage'], callback);
 });
 
 gulp.task('run', executeNodeCommand(
@@ -70,7 +70,7 @@ gulp.task('watch', function() {
 
 gulp.task('build', function(callback) {
   runSequence(
-    'restore-node-dependencies', 'restore-bower-dependencies',[
+    'clean', 'restore-node-dependencies', 'restore-bower-dependencies',[
       'lint',
       'test',
       'sass'

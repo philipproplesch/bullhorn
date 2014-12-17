@@ -1,13 +1,24 @@
+var net = require('net');
 var http = require('http');
 var socket = require('socket.io');
 
 module.exports = function() {
 
+  var getPort = function() {
+    // http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml
+    // Dynamic and/or Private Ports (49152-65535)
+
+    // TODO: Check if port is free and scan if necessary.
+    return 52147;
+  };
+
   return {
     start: function() {
+      var port = process.env.PORT || getPort();
+
       var app = http.createServer(function(req, res) {
         res.writeHead(200);
-        res.end('bullhorn up and running');
+        res.end('bullhorn up and running on ' + port);
       });
 
       var io = socket(app);
@@ -15,8 +26,7 @@ module.exports = function() {
       // Register socket events.
       require('./events')(io);
 
-      // TODO: Check if port is free!
-      app.listen(process.env.PORT || 52147);
+      app.listen(port);
     }
   };
 };
