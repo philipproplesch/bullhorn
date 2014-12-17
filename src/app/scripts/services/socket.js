@@ -1,23 +1,9 @@
 angular.module('bullhorn')
-  .service('Socket', function($q, Server, Client) {
-
-    // TODO: Scan for free port
-    var defaultPort = 52147;
+  .service('Socket', function($q, Client) {
 
     return {
       host: function() {
-
-        function handler (req, res) {
-          res.writeHead(200);
-          res.end('bullhorn up and running');
-        }
-
-        var app = require('http').createServer(handler);
-        var io = require('socket.io')(app);
-
-        app.listen(defaultPort);
-
-        Server.initialize(io);
+        require('./server/host')().start();
       },
 
       connect: function(endpoint) {
@@ -25,7 +11,7 @@ angular.module('bullhorn')
 
         var deferred = $q.defer();
 
-        var host = 'http://' + endpoint + ':' + defaultPort;
+        var host = endpoint;
 
         // Add socket.io client library
         var script = document.createElement('script');

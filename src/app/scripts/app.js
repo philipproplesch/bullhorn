@@ -7,11 +7,6 @@ angular.module('bullhorn', ['ui.router'])
         templateUrl: 'app/templates/home.html',
         controller: 'HomeCtrl'
       })
-      .state('control', {
-        url: '/control',
-        templateUrl: 'app/templates/control.html',
-        controller: 'ControlCtrl'
-      })
       .state('listen', {
         url: '/listen',
         templateUrl: 'app/templates/listen.html',

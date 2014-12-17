@@ -3,7 +3,7 @@ angular.module('bullhorn')
 
     $scope.host = function() {
       Socket.host();
-      $state.go('control');
+      $state.go('listen');
     };
 
     $scope.connect = function() {
