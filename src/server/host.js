@@ -1,4 +1,3 @@
-var net = require('net');
 var http = require('http');
 var socket = require('socket.io');
 

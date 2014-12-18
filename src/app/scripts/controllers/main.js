@@ -1,6 +1,8 @@
 angular.module('bullhorn')
   .controller('MainCtrl', function($scope, $interval, Spotify) {
 
+    $scope.connected = false;
+
     Spotify.initialize().then(function() {
 
       // Check status once

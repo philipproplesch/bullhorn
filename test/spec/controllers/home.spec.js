@@ -16,37 +16,40 @@ describe('HomeCtrl', function() {
       Socket: socket
     });
 
+    $templateCache.put('app/templates/home.html', '');
     $templateCache.put('app/templates/listen.html', '');
+
+    scope.connected = false;
   }));
 
   describe('#host()', function() {
-    it('should start the socket', function() {
-      var spy = sinon.spy(socket, 'host');
+    it('should call Socket#host()', function() {
+      sinon.spy(socket, 'host');
 
       scope.host();
 
-      expect(spy.called).to.be.true();
+      expect(socket.host.calledOnce).to.be.true();
     });
 
-    it('should change the state to `listen`', function() {
-      var spy = sinon.spy(state, 'go');
+    it('should call #connect()', function() {
+      sinon.stub(scope, 'connect');
 
       scope.host();
 
-      expect(spy.called).to.be.true();
+      expect(scope.connect.calledOnce).to.be.true();
     });
   });
 
   describe('#connect()', function() {
-    it('should connect to the socket', function() {
-      var spy = sinon.spy(socket, 'connect');
+    it('should call Socket#connect()', function() {
+      sinon.spy(socket, 'connect');
 
       scope.connect();
 
-      expect(spy.called).to.be.true();
+      expect(socket.connect.calledOnce).to.be.true();
     });
 
-    it('should change the state to `listen` after successful connection', function() {
+    it('should set `connected` to true on successful connection', function() {
       var deferred = q.defer();
       var promise = deferred.promise;
 
@@ -54,17 +57,56 @@ describe('HomeCtrl', function() {
         return promise;
       });
 
-      var spy = sinon.spy(state, 'go');
-
       scope.connect();
 
-      expect(spy.called).to.be.false();
+      expect(scope.connected).to.be.false();
 
       deferred.resolve();
 
       rootScope.$apply();
 
-      expect(spy.called).to.be.true();
+      expect(scope.connected).to.be.true();
+    });
+  });
+
+  describe('#join()', function() {
+    it('should do nothing if room name is undefined', function() {
+      sinon.spy(socket, 'join');
+
+      scope.room = undefined;
+      scope.join();
+
+      expect(socket.join.called).to.be.false();
+    });
+
+    it('should do nothing if room name is empty', function() {
+      sinon.spy(socket, 'join');
+
+      scope.room = '';
+      scope.join();
+
+      expect(socket.join.called).to.be.false();
+    });
+
+    it('should call Socket#join() if a room name is present', function() {
+      sinon.spy(state, 'go');
+
+      var deferred = q.defer();
+      var promise = deferred.promise;
+
+      sinon.stub(socket, 'join', function() {
+        return promise;
+      });
+
+      scope.room = 'foo';
+      scope.join();
+
+      deferred.resolve();
+
+      rootScope.$apply();
+
+      expect(state.go.calledOnce).to.be.true();
+      expect(state.go.getCall(0).args[0]).to.equal('listen');
     });
   });
 });

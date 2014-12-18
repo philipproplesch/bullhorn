@@ -7,8 +7,6 @@ angular.module('bullhorn')
       },
 
       connect: function(endpoint) {
-        // TODO: Cleanup endpoint
-
         var deferred = $q.defer();
 
         var host = endpoint;

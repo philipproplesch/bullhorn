@@ -9,6 +9,15 @@ var getSocketMock = function($q, $timeout) {
       }, 10);
 
       return deferred.promise;
+    },
+    join: function() {
+      var deferred = $q.defer();
+
+      $timeout(function() {
+        deferred.resolve();
+      }, 10);
+
+      return deferred.promise;
     }
   };
 };

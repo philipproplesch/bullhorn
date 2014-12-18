@@ -83,6 +83,11 @@ gulp.task('package', function(callback) {
     ], callback);
 });
 
+gulp.task('dev', [
+  'default',
+  'run'
+]);
+
 gulp.task('default', [
   'lint',
   'test',

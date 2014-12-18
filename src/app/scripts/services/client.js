@@ -1,14 +1,24 @@
 angular.module('bullhorn')
-  .service('Client', function(Spotify) {
+  .service('Client', function($q, Spotify) {
 
     var svc = {};
 
+    var socket;
+
     svc.initialize = function(host) {
-      var socket = io(host);
+      socket = io(host);
 
       socket.on('changeTrack', function(id) {
         Spotify.play(id);
       });
+    };
+
+    svc.join = function(channel) {
+      var deferred = $q.defer();
+
+      channel = channel;
+
+      return deferred.promise;
     };
 
     return svc;

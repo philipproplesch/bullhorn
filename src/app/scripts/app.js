@@ -8,7 +8,7 @@ angular.module('bullhorn', ['ui.router'])
         controller: 'HomeCtrl'
       })
       .state('listen', {
-        url: '/listen',
+        url: '/listen/:channel',
         templateUrl: 'app/templates/listen.html',
         controller: 'ListenCtrl'
       })

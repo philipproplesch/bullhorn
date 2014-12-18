@@ -1,6 +1,10 @@
-<button ng-click="host()" class="btn green">Host</button>
-<br>
-<input type="text" ng-model="endpoint">
-<button ng-click="connect()" class="btn green">Connect</button>
-
-
+<div ng-show="!connected">
+  <button ng-click="host()" class="btn green">Host</button>
+  <span>or</span>
+  <input type="text" ng-model="endpoint">
+  <button ng-click="connect()" class="btn green">Connect</button>
+</div>
+<div ng-show="connected">
+  <input type="text" ng-model="room">
+  <button ng-click="join()" class="btn green">Join</button>
+</div>
