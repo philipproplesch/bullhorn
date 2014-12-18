@@ -42,7 +42,7 @@ describe('Spotify', function() {
       expect(Spotify.get.callCount).to.be.above(1);
     });
 
-    it('should resolve the promise if the status code equals 200', function() {
+    it('should resolve the promise if the response is successful', function() {
       var port;
       Spotify.determineLocalUrl().then(function(data) {
         port = data;
@@ -63,6 +63,25 @@ describe('Spotify', function() {
 
       expect(port).to.not.be.undefined();
       expect(port).to.equals(4711);
+    });
+
+    it('should do nothing if the response is not successful', function() {
+      var port;
+      Spotify.determineLocalUrl().then(function(data) {
+        port = data;
+      });
+
+      expect(port).to.be.undefined();
+
+      deferred.resolve({
+        response: {
+          statusCode: 500
+        }
+      });
+
+      rootScope.$apply();
+
+      expect(port).to.be.undefined();
     });
   });
 

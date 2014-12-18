@@ -18,12 +18,13 @@ angular.module('bullhorn')
         var qs = [];
 
         for(var property in obj) {
+          /* istanbul ignore else  */
           if (obj.hasOwnProperty(property)) {
             qs.push(encodeURIComponent(property) + '=' + encodeURIComponent(obj[property]));
           }
         }
 
-        return qs.join("&");
+        return qs.join('&');
       }
     };
   });
