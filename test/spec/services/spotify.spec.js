@@ -48,7 +48,7 @@ describe('Spotify', function() {
         port = data;
       });
 
-      expect(port).to.be.undefined();
+      expect(port).to.be.undefined;
 
       deferred.resolve({
         response: {
@@ -61,7 +61,7 @@ describe('Spotify', function() {
 
       rootScope.$apply();
 
-      expect(port).to.not.be.undefined();
+      expect(port).to.not.be.undefined;
       expect(port).to.equals(4711);
     });
 
@@ -71,7 +71,7 @@ describe('Spotify', function() {
         port = data;
       });
 
-      expect(port).to.be.undefined();
+      expect(port).to.be.undefined;
 
       deferred.resolve({
         response: {
@@ -81,7 +81,7 @@ describe('Spotify', function() {
 
       rootScope.$apply();
 
-      expect(port).to.be.undefined();
+      expect(port).to.be.undefined;
     });
   });
 

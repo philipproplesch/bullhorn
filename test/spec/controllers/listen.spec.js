@@ -22,7 +22,7 @@ describe('ListenCtrl', function() {
 
       scope.pause();
 
-      expect(spotify.pause.called).to.be.true();
+      expect(spotify.pause.called).to.be.true;
     });
   });
 
@@ -32,7 +32,7 @@ describe('ListenCtrl', function() {
 
       scope.play();
 
-      expect(spotify.play.called).to.be.true();
+      expect(spotify.play.called).to.be.true;
     });
   });
 });

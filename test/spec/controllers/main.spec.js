@@ -13,6 +13,6 @@ describe('MainCtrl', function() {
   }));
 
   it('should set `connected` to false initially', function() {
-    expect(scope.connected).to.be.false();
+    expect(scope.connected).to.be.false;
   });
 });

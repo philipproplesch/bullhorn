@@ -28,7 +28,7 @@ describe('HomeCtrl', function() {
 
       scope.host();
 
-      expect(socket.host.calledOnce).to.be.true();
+      expect(socket.host.calledOnce).to.be.true;
     });
 
     it('should call #connect()', function() {
@@ -36,7 +36,7 @@ describe('HomeCtrl', function() {
 
       scope.host();
 
-      expect(scope.connect.calledOnce).to.be.true();
+      expect(scope.connect.calledOnce).to.be.true;
     });
   });
 
@@ -46,7 +46,7 @@ describe('HomeCtrl', function() {
 
       scope.connect();
 
-      expect(socket.connect.calledOnce).to.be.true();
+      expect(socket.connect.calledOnce).to.be.true;
     });
 
     it('should set `connected` to true on successful connection', function() {
@@ -59,13 +59,13 @@ describe('HomeCtrl', function() {
 
       scope.connect();
 
-      expect(scope.connected).to.be.false();
+      expect(scope.connected).to.be.false;
 
       deferred.resolve();
 
       rootScope.$apply();
 
-      expect(scope.connected).to.be.true();
+      expect(scope.connected).to.be.true;
     });
   });
 
@@ -76,7 +76,7 @@ describe('HomeCtrl', function() {
       scope.room = undefined;
       scope.join();
 
-      expect(socket.join.called).to.be.false();
+      expect(socket.join.called).to.be.false;
     });
 
     it('should do nothing if room name is empty', function() {
@@ -85,7 +85,7 @@ describe('HomeCtrl', function() {
       scope.room = '';
       scope.join();
 
-      expect(socket.join.called).to.be.false();
+      expect(socket.join.called).to.be.false;
     });
 
     it('should call Socket#join() if a room name is present', function() {
@@ -105,7 +105,7 @@ describe('HomeCtrl', function() {
 
       rootScope.$apply();
 
-      expect(state.go.calledOnce).to.be.true();
+      expect(state.go.calledOnce).to.be.true;
       expect(state.go.getCall(0).args[0]).to.equal('listen');
     });
   });
