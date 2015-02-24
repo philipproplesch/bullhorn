@@ -1,51 +1,51 @@
 {
 
-    // Enforcing options
-    // http://www.jshint.com/docs/options/#enforcing-options
+  // Enforcing options
+  // http://www.jshint.com/docs/options/#enforcing-options
 
-    "bitwise": true,
-    "eqeqeq": true,
-    "forin": true,
-    "latedef": true,
-    "noarg": true,
-    "nonbsp": true,
-    "nonew": true,
-    "quotmark": "single",
-    "undef": true,
-    "unused": true,
+  "bitwise": true,
+  "eqeqeq": true,
+  "forin": true,
+  "latedef": true,
+  "noarg": true,
+  "nonbsp": true,
+  "nonew": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    // Relaxing options
-    // http://www.jshint.com/docs/options/#relaxing-options
+  // Relaxing options
+  // http://www.jshint.com/docs/options/#relaxing-options
 
-    "esnext": true,
+  "esnext": true,
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    // Environments
-    // http://www.jshint.com/docs/options/#environments
+  // Environments
+  // http://www.jshint.com/docs/options/#environments
 
-    "browser": true,
-    "jquery": true,
-    "node": true,
+  "browser": true,
+  "jquery": true,
+  "node": true,
 
-    "globals": {
-      "nodeHelper": false,
-      "angular": false,
-      "io": false,
-      "_": false,
+  "globals": {
+    "nodeHelper": false,
+    "angular": false,
+    "io": false,
+    "_": false,
 
-      "sinon": false,
+    "sinon": false,
 
-      "describe": false,
-      "it": false,
-      "before": false,
-      "beforeEach": false,
-      "after": false,
-      "afterEach": false,
-      "expect": false,
+    "describe": false,
+    "it": false,
+    "before": false,
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false,
+    "expect": false,
 
-      "inject": false
-    }
+    "inject": false
+  }
 }

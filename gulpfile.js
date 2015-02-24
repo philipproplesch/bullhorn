@@ -3,6 +3,14 @@ var plugins = require('gulp-load-plugins')();
 
 var runSequence = require('run-sequence');
 
+var files = {
+  scripts: [
+    './src/app/scripts/**/*.js',
+    './test/**/*.js',
+    './gulpfile.js'
+  ]
+};
+
 function executeNodeCommand(cmd) {
   var platform = require('os').platform();
 
@@ -14,13 +22,18 @@ function executeNodeCommand(cmd) {
 }
 
 gulp.task('lint', function() {
-  return gulp.src([
-    './src/app/scripts/**/*.js',
-    './test/**/*.js',
-    './gulpfile.js'
-    ])
-    .pipe(plugins.jshint())
-    .pipe(plugins.jshint.reporter('jshint-stylish'));
+  return 
+    gulp
+      .src(files.scripts)
+      .pipe(plugins.jshint())
+      .pipe(plugins.jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('jscs', function() {
+  return 
+    gulp
+      .src(files.scripts)
+      .pipe(plugins.jscs());
 });
 
 gulp.task('sass', function () {
@@ -63,15 +76,16 @@ gulp.task('build-node-webkit-package', ['clean'], executeNodeCommand(
 ));
 
 gulp.task('watch', function() {
-  gulp.watch('./src/app/scripts/**/*.js', ['lint']);
-  gulp.watch('./test/spec/**/*.js', ['lint', 'test']);
+  gulp.watch('./src/app/scripts/**/*.js', ['lint', 'jscs']);
+  gulp.watch('./test/spec/**/*.js', ['lint', 'jscs', 'test']);
   gulp.watch('./src/app/styles/**/*.scss', ['sass']);
 });
 
 gulp.task('build', function(callback) {
   runSequence(
     'clean', 'restore-node-dependencies', 'restore-bower-dependencies',[
-      'lint',
+      'lint',      
+      'jscs',
       'test',
       'sass'
     ], callback);
@@ -90,6 +104,7 @@ gulp.task('dev', [
 
 gulp.task('default', [
   'lint',
+  'jscs',
   'test',
   'sass',
   'watch'

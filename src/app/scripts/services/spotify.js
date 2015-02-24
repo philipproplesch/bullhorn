@@ -11,25 +11,25 @@ angular.module('bullhorn')
     var svc = {};
 
     var methods = {
-      'open': {
+      open: {
         url: '/remote/open.json'
       },
-      'status': {
+      status: {
         url: '/remote/status.json'
       },
-      'version': {
+      version: {
         url: '/service/version.json',
         params: {
           service: 'remote'
         }
       },
-      'play': {
+      play: {
         url: '/remote/play.json',
         params: {
           uri: undefined
         }
       },
-      'pause': {
+      pause: {
         url: '/remote/pause.json',
         params: {
           pause: undefined
@@ -73,8 +73,8 @@ angular.module('bullhorn')
       var deferred = $q.defer();
 
       var parameters = {
-        'ref': '',
-        'cors': ''
+        ref: '',
+        cors: ''
       };
 
       if (svc.oAuthToken && svc.csrfToken) {
@@ -97,7 +97,7 @@ angular.module('bullhorn')
       var options = {
         url: url,
         headers: {
-          'Origin': originHeader
+          Origin: originHeader
         }
       };
 

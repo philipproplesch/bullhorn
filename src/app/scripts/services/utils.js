@@ -17,7 +17,7 @@ angular.module('bullhorn')
       querystring: function(obj) {
         var qs = [];
 
-        for(var property in obj) {
+        for (var property in obj) {
           /* istanbul ignore else  */
           if (obj.hasOwnProperty(property)) {
             qs.push(encodeURIComponent(property) + '=' + encodeURIComponent(obj[property]));
