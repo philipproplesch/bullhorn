@@ -16,7 +16,11 @@ angular.module('bullhorn')
     svc.join = function(channel) {
       var deferred = $q.defer();
 
-      channel = channel;
+      socket.emit('join', channel);
+
+      socket.on('joinedChannel', function() {
+        deferred.resolve();
+      });
 
       return deferred.promise;
     };

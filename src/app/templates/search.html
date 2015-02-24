@@ -1,0 +1,5 @@
+<input ng-model="term" />
+<button class="btn" ng-click="search()">Search</button>
+<ul class="bh-list bh-track-list">
+  <li ng-repeat="track in results" ng-click="selectResult(track)"><i class="fa fa-music"></i><span><span ng-bind="getTrackName(track)"></span></li>
+</ul>

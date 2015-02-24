@@ -14,10 +14,13 @@ module.exports = function() {
   return {
     start: function() {
       var port = process.env.PORT || getPort();
+      var msg = 'bullhorn up and running on ' + port;
+
+      console.log(msg);
 
       var app = http.createServer(function(req, res) {
         res.writeHead(200);
-        res.end('bullhorn up and running on ' + port);
+        res.end(msg);
       });
 
       var io = socket(app);

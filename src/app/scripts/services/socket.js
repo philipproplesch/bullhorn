@@ -6,6 +6,10 @@ angular.module('bullhorn')
         require('./server/host')().start();
       },
 
+      join: function(channel) {
+        return Client.join(channel);
+      },
+
       connect: function(endpoint) {
         var deferred = $q.defer();
 

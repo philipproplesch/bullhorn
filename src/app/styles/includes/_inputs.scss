@@ -41,5 +41,6 @@ input {
   &:active,
   &:focus {
     background-color: $color-white;
+    transition: background 0.2s ease-in-out;
   }
 }
