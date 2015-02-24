@@ -12,6 +12,10 @@ angular.module('bullhorn', ['ui.router'])
         templateUrl: 'app/templates/listen.html',
         controller: 'ListenCtrl'
       })
+      .state('styles', {
+        url: '/styles',
+        templateUrl: 'app/templates/styles.html'
+      })
     ;
 
     $urlRouterProvider.otherwise('/');

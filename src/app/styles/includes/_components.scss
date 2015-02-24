@@ -88,8 +88,6 @@ input{
 
 .music{
   li{
-    border-top: 1px solid $content-color-lighter;
-    border-bottom: 1px solid $content-color-lighter;
     &.active{
       border-left: 5px solid $color-green;
       padding-left: 5px;
