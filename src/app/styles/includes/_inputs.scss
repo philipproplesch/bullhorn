@@ -1,0 +1,45 @@
+// Buttons
+.btn {
+  background-color: $color-white;
+  border: none;
+  border-radius: $border-radius;
+  color: $color-black;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 6px 20px 3px;
+
+  &:hover {
+    background-color: rgba($color-white, 0.5);
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+
+  $types:
+    (green $color-green)
+    (red $color-red)
+    (blue $color-blue);
+
+  @each $type in $types {
+    &.#{nth($type, 1)} {
+      background-color: #{nth($type, 2)};
+      color: $color-white;
+
+      &:hover {
+        background-color: darken(nth($type, 2), $btn-hover-darken);
+      }
+    }
+  }
+}
+
+// Inputs
+input {
+  background-color: darken($color-white, 20%);
+  border: none;
+  border-radius: $border-radius;
+  padding: 7px 20px 6px 20px;
+
+  &:active,
+  &:focus {
+    background-color: $color-white;
+  }
+}

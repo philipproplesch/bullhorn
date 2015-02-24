@@ -3,8 +3,10 @@
 
 @import "../bower_components/font-awesome/scss/font-awesome";
 
+@import "includes/helpers";
 @import "includes/navigation";
-@import "includes/components";
+@import "includes/inputs";
+@import "includes/lists";
 
 * {
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;

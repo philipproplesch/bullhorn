@@ -1,0 +1,84 @@
+.bh-list {
+  background-color: $content-color;
+  color: rgba($color-white, 0.5);
+  list-style: none;
+  padding: 0;
+
+  li {
+    overflow: hidden;
+    padding: 7px 7px 7px 10px;
+    position: relative;
+
+    span {
+      padding-left: 10px;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      background-color: $content-color-lighter;
+      color: $color-white;
+      cursor: pointer;
+    }
+  }
+
+  &.bh-track-list {
+    color: $color-white;
+
+    li {
+      &.playing {
+        background-color: $content-color-lighter;
+        border-left: 5px solid $color-green;
+        padding-left: 5px;
+
+        i.fa-play {
+          background-color: $content-color-lighter;
+          position: absolute;
+          right: 0;
+          padding: 0 20px;
+        }
+      }
+    }
+  }
+
+  &.bh-cover-list {
+    .col-xs {
+      flex-grow: 0;
+      flex-basis: inherit;
+    }
+
+    &:hover {
+      background-color: $content-color-lighter;
+      cursor: pointer;
+    }
+
+    ul {
+
+      display: inline-block;
+      padding: 0;
+
+      li {
+        span {
+        }
+
+        padding: 0;
+
+        .up {
+          color: $color-green;
+        }
+
+        .down {
+          color: $color-red;
+        }
+
+        .counter {
+          color: $color-white;
+          font-weight: bold;
+        }
+
+        i {
+          font-size: 50px;
+        }
+      }
+    }
+  }
+}
