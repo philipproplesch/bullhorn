@@ -1,8 +1,9 @@
 describe('HomeCtrl', function() {
   beforeEach(module('bullhorn'));
+  beforeEach(module('bullhorn-templates'));
 
   var HomeCtrl, rootScope, scope, q, state, socket;
-  beforeEach(inject(function ($controller, $rootScope, $state, $q, $timeout, $templateCache) {
+  beforeEach(inject(function ($controller, $rootScope, $state, $q, $timeout) {
     q = $q;
     state = $state;
 
@@ -15,9 +16,6 @@ describe('HomeCtrl', function() {
       $scope: scope,
       Socket: socket
     });
-
-    $templateCache.put('app/templates/home.html', '');
-    $templateCache.put('app/templates/listen.html', '');
 
     scope.connected = false;
   }));

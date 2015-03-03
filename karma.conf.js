@@ -14,13 +14,21 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      // Libraries
       'src/app/bower_components/angular/angular.js',
       'src/app/bower_components/angular-mocks/angular-mocks.js',
       'src/app/bower_components/angular-ui-router/release/angular-ui-router.js',
       'src/app/bower_components/underscore/underscore.js',
+
+      // Tests
       'test/mocks/**/*.js',
+      'test/spec/**/*.js',
+
+      // App
       'src/app/scripts/**/*.js',
-      'test/spec/**/*.js'
+
+      // Templates
+      'src/app/templates/**/*.html'
     ],
 
 
@@ -33,6 +41,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'src/app/templates/**/*.html': ['ng-html2js'],
       'src/app/scripts/!(node)/**/*.js': ['coverage']
     },
 
@@ -67,6 +76,11 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: false,
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'src/',
+      moduleName: 'bullhorn-templates'
+    }
   });
 };

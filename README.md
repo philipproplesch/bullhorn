@@ -19,3 +19,7 @@
 ### Deployment
 
 `gulp package` creates executable packages for Windows and OS X in the `/build` directory.
+
+---
+
+*Note to myself:* `npm-check-updates -u` will update all NPM packages and the `package.json`

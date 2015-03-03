@@ -12,7 +12,7 @@ angular.module('bullhorn')
         };
 
         scope.selectResult = function(track) {
-          $rootScope.$emit('bullhorn:selected-search-result', track);
+          $rootScope.$emit('bullhorn:select-result', track);
         };
 
         scope.getTrackName = function(track) {
