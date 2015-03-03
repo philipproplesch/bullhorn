@@ -22,4 +22,4 @@
 
 ---
 
-*Note to myself:* `npm-check-updates -u` will update all NPM packages and the `package.json`
+*Note to myself:* `npm-check-updates -u` updates all NPM packages and the `package.json`
